@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+IMAGE_NAME="augurui:img2zx"
+
+if ! docker image inspect "$IMAGE_NAME" > /dev/null 2>&1; then
+    if ! docker build -t "$IMAGE_NAME" .; then
+        exit 1
+    fi
+fi
+
+docker run --rm -v "$(pwd)":/app "$IMAGE_NAME" "$@"
