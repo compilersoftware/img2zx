@@ -8,4 +8,4 @@ if ! docker image inspect "$IMAGE_NAME" > /dev/null 2>&1; then
     fi
 fi
 
-docker run --rm -v "$(pwd)":/app "$IMAGE_NAME" "$@"
+docker run -it --rm -u $(id -u):$(id -g)  -v "$(pwd)":/app "$IMAGE_NAME" "$@"
